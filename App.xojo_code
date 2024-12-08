@@ -9,7 +9,12 @@ Inherits MobileApplication
 		  If Not SpecialFolder.Documents.Child("data.sqlite").Exists Then
 		    // Only copy the file if it is not already there
 		    Var dest As FolderItem = SpecialFolder.Documents.Child("data.sqlite")
-		    dbFile.CopyTo(dest)
+		    
+		    try
+		      dbFile.CopyTo(dest)
+		    Catch error As IOException
+		      MessageBox(error.Message)
+		    End Try
 		    
 		  End If
 		  
